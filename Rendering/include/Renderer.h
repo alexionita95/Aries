@@ -1,5 +1,6 @@
 #ifndef RENDERER_H
 #define RENDERER_H
+#include <inttypes.h>
 namespace aries {
 	namespace rendering {
 		class Renderer
@@ -7,6 +8,8 @@ namespace aries {
 		public:
             void Init();
             void Render();
+        private:
+            float angle;
 		};
 	}
 }

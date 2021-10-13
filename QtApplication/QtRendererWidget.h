@@ -2,6 +2,7 @@
 #define QT_RENDERER_WIDGET_H
 #include<Renderer.h>
 #include<QOpenGLWidget>
+#include <QTimer>
 
 class QtRendererWidget: public QOpenGLWidget
 {
@@ -15,6 +16,9 @@ protected:
     void resizeGL(int w, int h);
     void paintGL();
     aries::rendering::Renderer renderer;
+    QTimer *timer;
+protected slots:
+    void timerTimeout();
 };
 
 #endif // QT_RENDERER_WIDGET_H

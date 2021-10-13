@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     // setWindowFlags(Qt::WindowStaysOnTopHint | Qt::WindowTransparentForInput);
        //setAttribute(Qt::WA_NoSystemBackground, true);
-      // setAttribute(Qt::WA_TranslucentBackground, true);
+       setAttribute(Qt::WA_TranslucentBackground, true);
        ui->setupUi(this);
        //ui->openGLWidget->setWindowFlags(Qt::WindowTransparentForInput);
        //ui->openGLWidget->setAttribute(Qt::WA_TranslucentBackground, true);
