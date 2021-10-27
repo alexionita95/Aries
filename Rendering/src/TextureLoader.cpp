@@ -9,13 +9,13 @@ TextureLoader::TextureLoader()
 
 }
 
-Texture TextureLoader::Load(const std::string &path)
+Texture TextureLoader::Load(const std::string &path,const bool& flip)
 {
 glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 glPixelStorei(GL_PACK_ALIGNMENT, 1);
 Texture result;
 int width, height, nrChannels;
-stbi_set_flip_vertically_on_load(false);
+stbi_set_flip_vertically_on_load(flip);
 unsigned char *data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
 unsigned int texture;
 glGenTextures(1, &texture);

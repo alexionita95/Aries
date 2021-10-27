@@ -8,7 +8,7 @@ class TextureLoader
 {
 public:
     TextureLoader();
-    Texture Load(const std::string& path);
+    Texture Load(const std::string& path, const bool& flip=true);
 
 };
 }

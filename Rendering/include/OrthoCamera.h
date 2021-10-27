@@ -8,6 +8,7 @@ class OrthoCamera
 public:
     OrthoCamera();
     OrthoCamera(const float& x, const float& y, const float& width, const float& height);
+    OrthoCamera(const float& x, const float& y, const float& width, const float& height, const bool& flip_);
     glm::mat4 getProjection(){return projection;}
     glm::vec3 getPosition(){return position;}
     void setPosition(glm::vec3 value){
@@ -28,6 +29,7 @@ private:
     glm::mat4 projection;
     glm::vec3 position;
     glm::vec2 size;
+    bool flip;
 };
 }
 }
