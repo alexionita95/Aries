@@ -35,6 +35,10 @@ protected:
     aries::rendering::Texture texture2;
     std::vector<ParticleHandle> particles;
     forcegenerators::ParticleForceGeneratorHandle gravityGenerator;
+    forcegenerators::ParticleForceGeneratorHandle springGenerator;
+    forcegenerators::ParticleForceGeneratorHandle springGenerator1;
+    forcegenerators::ParticleForceGeneratorHandle springGenerator2;
+    ParticleHandle a,b;
     ForceHandler handler;
 
 protected slots:

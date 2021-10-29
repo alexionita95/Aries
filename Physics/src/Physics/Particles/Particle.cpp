@@ -17,9 +17,9 @@ Particle::Particle(const glm::vec3 &position_, const float &mass_):
 void Particle::integrate(float dt)
 {
     position += velocity*dt;
-    glm::vec3 resultAcc = acceleration + forceAccumulator*inverseMass;
+    glm::vec3 resultAcc = forceAccumulator*inverseMass;
     velocity +=resultAcc*dt;
-    velocity*= powf(damping,dt);
+    velocity*= pow(damping,dt);
     ClearAccumulator();
 }
 

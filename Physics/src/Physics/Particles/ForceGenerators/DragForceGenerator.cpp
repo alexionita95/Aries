@@ -20,7 +20,7 @@ DragForceGenerator::DragForceGenerator(const float &k1_, const float &k2_):
 void DragForceGenerator::updateForce(const std::shared_ptr<Particle> &particle, float dt)
 {
     glm::vec3 force = particle->getVelocity();
-    float dragCoeff = force.length();
+    float dragCoeff = glm::length(force);
     dragCoeff = k1*dragCoeff + k2*dragCoeff*dragCoeff;
     force = glm::normalize(force);
     force*=-dragCoeff;
