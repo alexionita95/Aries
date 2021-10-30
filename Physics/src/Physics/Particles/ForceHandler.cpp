@@ -45,7 +45,7 @@ void ForceHandler::update(const float &dt)
 {
     for(const auto& force:forces)
     {
-        force.first->updateForce(force.second,dt);
+     //   force.first->updateForce(force.second,dt);
     }
 }
 

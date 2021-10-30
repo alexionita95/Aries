@@ -14,21 +14,20 @@ BuoyancyForceGenerator::BuoyancyForceGenerator(const float &maxDepth_, const flo
 
 }
 
-void BuoyancyForceGenerator::updateForce(const std::shared_ptr<Particle> &particle, float dt)
+glm::vec3 BuoyancyForceGenerator::updateForce(PhysicsData& data, float dt)
 {
-    float depth = particle->getPosition().y;
-    if(depth >= liquidHeight + maxDepth) return;
+    float depth = data.position.y;
+    if(depth >= liquidHeight + maxDepth) return glm::vec3(0);
 
     glm::vec3 force(0);
     if(depth <=liquidHeight - maxDepth)
      {
         force.y = liquidDensity*volume;
-        particle->addForce(force);
-        return;
+        return force;
     }
 
     force.y = liquidDensity*volume*(depth-maxDepth-liquidHeight)/2*maxDepth;
-    particle->addForce(force);
+    return force;
 }
 }
 }

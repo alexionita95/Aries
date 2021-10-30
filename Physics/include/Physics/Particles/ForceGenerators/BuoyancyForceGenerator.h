@@ -1,6 +1,7 @@
 #ifndef PARTICLEBUOYANCYFORCEGENERATOR_H
 #define PARTICLEBUOYANCYFORCEGENERATOR_H
 #include<Physics/Particles/ForceGenerators/ForceGenerator.h>
+#include<Physics/Particles/Particle.h>
 namespace aries {
 namespace physics {
 namespace particles{
@@ -13,7 +14,7 @@ public:
     BuoyancyForceGenerator(const float& maxDepth_, const float& volume_, const float& liquidHeight_, const float& liquidDensity_ = 1000.0f);
 
     // ForceGenerator interface
-    void updateForce(const std::shared_ptr<Particle> &particle, float dt);
+    glm::vec3 updateForce(PhysicsData& data, float dt);
 private:
     float maxDepth;
     float volume;

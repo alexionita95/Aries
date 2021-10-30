@@ -15,16 +15,16 @@ SpringForceGenerator::SpringForceGenerator(const ParticleHandle &other_, const f
 
 }
 
-void SpringForceGenerator::updateForce(const std::shared_ptr<Particle> &particle, float dt)
+glm::vec3 SpringForceGenerator::updateForce(PhysicsData& data, float dt)
 {
-glm::vec3 force = particle->getPosition();
+glm::vec3 force = data.position;
 force-=other->getPosition();
 float magnitude = glm::length(force);
 magnitude =magnitude-restLength;
 magnitude*=springConstant;
 force = glm::normalize(force);
 force*=-magnitude;
-particle->addForce(force);
+return force;
 }
 }
 }

@@ -15,11 +15,11 @@ GravityGenerator::GravityGenerator(const glm::vec3 &gravity_):
 
 }
 
-void GravityGenerator::updateForce(const std::shared_ptr<Particle> &particle, float dt)
+glm::vec3 GravityGenerator::updateForce(PhysicsData& data, float dt)
 {
-    if(particle->hasInfiniteMass())
-        return;
-    particle->addForce(gravity*particle->getMass());
+    if(data.infiniteMass)
+        return glm::vec3(0);
+    return gravity*data.mass;
 }
 }
 }

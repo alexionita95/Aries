@@ -1,6 +1,7 @@
 #ifndef PARTICLESPRINGFORCEGENERATOR_H
 #define PARTICLESPRINGFORCEGENERATOR_H
 #include<Physics/Particles/ForceGenerators/ForceGenerator.h>
+#include<Physics/Particles/Particle.h>
 namespace aries {
 namespace physics {
 namespace particles{
@@ -12,7 +13,7 @@ public:
     SpringForceGenerator(const ParticleHandle& other_, const float& springConstant_, const float& restLength_);
 
     // ForceGenerator interface
-    void updateForce(const std::shared_ptr<Particle> &particle, float dt);
+    glm::vec3 updateForce(PhysicsData& data, float dt);
 
 private:
     ParticleHandle other;

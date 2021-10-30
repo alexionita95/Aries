@@ -14,17 +14,16 @@ AnchoredSpringForceGenerator::AnchoredSpringForceGenerator(const glm::vec3 &anch
 
 }
 
-void AnchoredSpringForceGenerator::updateForce(const std::shared_ptr<Particle> &particle, float dt)
+glm::vec3 AnchoredSpringForceGenerator::updateForce(PhysicsData& data, float dt)
 {
-    glm::vec3 force = particle->getPosition();
+    glm::vec3 force = data.position;
     force-=anchor;
     float magnitude = glm::length(force);
     magnitude =magnitude-restLength;
     magnitude*=springConstant;
     force= glm::normalize(force);
     force*=-magnitude;
-    particle->addForce(force);
-
+    return force;
 }
 }
 }

@@ -15,15 +15,15 @@ BungeeForceGenerator::BungeeForceGenerator(const ParticleHandle &other_, const f
 
 }
 
-void BungeeForceGenerator::updateForce(const std::shared_ptr<Particle> &particle, float dt)
+glm::vec3 BungeeForceGenerator::updateForce(PhysicsData& data, float dt)
 {
-    glm::vec3 force = particle->getPosition() - other->getPosition();
+    glm::vec3 force = data.position - other->getPosition();
     float magnitude = glm::length(force);
-    if(magnitude<=restLength) return;
+    if(magnitude<=restLength) glm::vec3(0);
     magnitude = springConstant*(magnitude - restLength);
     force = glm::normalize(force);
     force*=-magnitude;
-    particle->addForce(force);
+    return force;
 
 
 

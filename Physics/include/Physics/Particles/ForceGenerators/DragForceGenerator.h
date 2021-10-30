@@ -12,7 +12,7 @@ public:
     DragForceGenerator(const float& k1_, const float& k2_);
 
     // ForceGenerator interface
-    void updateForce(const std::shared_ptr<Particle> &particle, float dt);
+    glm::vec3 updateForce(PhysicsData& data, float dt);
 private:
     float k1;
     float k2;

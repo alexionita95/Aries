@@ -1,5 +1,6 @@
 #ifndef PARTICLEBUNGEEFORCEGENERATOR_H
 #define PARTICLEBUNGEEFORCEGENERATOR_H
+#include<Physics/Particles/Particle.h>
 #include<Physics/Particles/ForceGenerators/ForceGenerator.h>
 namespace aries {
 namespace physics {
@@ -12,7 +13,7 @@ public:
     BungeeForceGenerator(const ParticleHandle& other_, const float& springConstant_, const float& restLength_);
 
     // ForceGenerator interface
-    void updateForce(const std::shared_ptr<Particle> &particle, float dt);
+    glm::vec3 updateForce(PhysicsData& data, float dt);
 
 private:
     ParticleHandle other;

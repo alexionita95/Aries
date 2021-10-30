@@ -14,7 +14,7 @@ public:
     AnchoredSpringForceGenerator(const glm::vec3& anchor_, const float& springConstant_, const float& restLength_);
 
     // ForceGenerator interface
-    void updateForce(const std::shared_ptr<Particle> &particle, float dt);
+    glm::vec3 updateForce(PhysicsData& data, float dt);
 
 private:
     glm::vec3 anchor;

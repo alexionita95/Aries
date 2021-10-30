@@ -14,7 +14,7 @@ public:
     GravityGenerator(const glm::vec3& gravity_);
 
     // ParticleForceGenerator interface
-    void updateForce(const std::shared_ptr<Particle> &particle, float dt);
+    glm::vec3 updateForce(PhysicsData& data, float dt);
 
 private:
     glm::vec3 gravity;
