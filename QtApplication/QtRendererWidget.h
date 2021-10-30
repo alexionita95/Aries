@@ -11,8 +11,10 @@
 #include<Physics/Particles/ForceHandler.h>
 #include<Physics/Particles/ForceGenerators/ForceGenerator.h>
 #include<Physics/Particles/ForceGenerators/GravityGenerator.h>
+#include<Physics/Particles/ForceGenerators/DragForceGenerator.h>
+#include<Color.h>
 #include<glm/glm.hpp>
-
+#include<chrono>
 using namespace aries::physics::particles;
 class QtRendererWidget: public QOpenGLWidget
 {
@@ -20,7 +22,9 @@ class QtRendererWidget: public QOpenGLWidget
 public:
     QtRendererWidget(QWidget* parent=nullptr);
     void generate();
-
+    void toggleDebug();
+signals:
+    void updateFPS(float fps);
     // QOpenGLWidget interface
 protected:
     void initializeGL();
@@ -32,15 +36,18 @@ protected:
     QTimer *timer;
     aries::rendering::TextureLoader loader;
     aries::rendering::Texture texture1;
-    aries::rendering::Texture texture2;
     std::vector<ParticleHandle> particles;
+    std::vector<aries::rendering::Color> colors;
     forcegenerators::ParticleForceGeneratorHandle gravityGenerator;
     forcegenerators::ParticleForceGeneratorHandle springGenerator;
-    forcegenerators::ParticleForceGeneratorHandle springGenerator1;
-    forcegenerators::ParticleForceGeneratorHandle springGenerator2;
+    forcegenerators::ParticleForceGeneratorHandle dragForceGenerator;
     ParticleHandle a,b;
-    ForceHandler handler;
-
+  //  ForceHandler handler;
+    std::chrono::time_point<std::chrono::steady_clock> lastTime;
+    int samples;
+    float fpsSamples;
+    glm::vec3 anchorPosition;
+    bool debug;
 protected slots:
     void timerTimeout();
 

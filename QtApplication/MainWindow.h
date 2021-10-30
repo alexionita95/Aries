@@ -17,6 +17,9 @@ public:
 
 private slots:
     void on_pushButton_released();
+    void on_updateFPS(float fps);
+
+    void on_pushButton_2_released();
 
 private:
     Ui::MainWindow *ui;

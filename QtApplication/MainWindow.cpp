@@ -12,6 +12,10 @@ MainWindow::MainWindow(QWidget *parent)
        //ui->openGLWidget->setWindowFlags(Qt::WindowTransparentForInput);
        //ui->openGLWidget->setAttribute(Qt::WA_TranslucentBackground, true);
        //ui->openGLWidget->setAttribute(Qt::WA_NoSystemBackground, true);
+       QSurfaceFormat format = ui->openGLWidget->format();
+       format.setSamples(8);
+       ui->openGLWidget->setFormat(format);
+       connect(ui->openGLWidget,&QtRendererWidget::updateFPS,this, &MainWindow::on_updateFPS);
 }
 
 MainWindow::~MainWindow()
@@ -23,5 +27,16 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_released()
 {
     ui->openGLWidget->generate();
+}
+
+void MainWindow::on_updateFPS(float fps)
+{
+    ui->label->setText("FPS: "+ QString::number(fps));
+}
+
+
+void MainWindow::on_pushButton_2_released()
+{
+    ui->openGLWidget->toggleDebug();
 }
 
