@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(Aries)
 
-set(USE_QT TRUE CACHE BOOL "Check if you want to use QT as a rendering context. (If unchecked the default GLFW context will be used)")
+set(USE_QT OFF CACHE BOOL "Check if you want to use QT as a rendering context. (If unchecked the default GLFW context will be used)")
 
 add_subdirectory(third_party)
 add_subdirectory(Utils)
