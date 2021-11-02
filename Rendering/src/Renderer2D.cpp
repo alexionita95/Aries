@@ -8,7 +8,7 @@
 #include<iostream>
 namespace aries {
 namespace rendering {
-Renderer2D::Renderer2D(const std::shared_ptr<OrthoCamera>& camera_):
+Renderer2D::Renderer2D(const std::shared_ptr<OrthoCamera>& camera_): VBO{0},VAO{0}, EBO{0},defaultTexture{},
     camera {camera_},
     shader {std::make_shared<Shader>()}
 {
@@ -19,7 +19,7 @@ Renderer2D::Renderer2D(const std::shared_ptr<OrthoCamera>& camera_):
 void Renderer2D::Init()
 {
     gladLoadGL();
-    shader->Load("shaders/default2d.vs","shaders/default2d.fs");
+    shader->Load("resources/shaders/default2d.vs","resources/shaders/default2d.fs");
 
     defaultTexture = TextureLoader::CreateFlat(1,1,0xffffffff);
     InitQuad();

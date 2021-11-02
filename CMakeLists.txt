@@ -1,7 +1,16 @@
 cmake_minimum_required(VERSION 3.20)
 project(Aries)
+
+set(USE_QT TRUE CACHE BOOL "Check if you want to use QT as a rendering context. (If unchecked the default GLFW context will be used)")
+
 add_subdirectory(third_party)
 add_subdirectory(Utils)
 add_subdirectory(Rendering)
 add_subdirectory(Physics)
-add_subdirectory(QtApplication)
+add_subdirectory(Engine)
+if(${USE_QT})
+	add_subdirectory(QtApplication)
+else()
+	add_subdirectory(DemoApplication)
+endif()
+install(DIRECTORY resources DESTINATION bin)
