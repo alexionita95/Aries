@@ -4,10 +4,10 @@
 #include<memory>
 
 
-#include<OrthoCamera.h>
-#include<Shader.h>
-#include<Color.h>
-#include<Texture.h>
+#include<Rendering/OrthoCamera.h>
+#include<Rendering/Shader.h>
+#include<Rendering/Color.h>
+#include<Rendering/Texture.h>
 
 namespace aries {
     namespace rendering {

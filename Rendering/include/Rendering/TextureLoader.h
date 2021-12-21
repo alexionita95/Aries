@@ -1,6 +1,6 @@
 #ifndef TEXTURELOADER_H
 #define TEXTURELOADER_H
-#include<Texture.h>
+#include<Rendering/Texture.h>
 #include<string>
 namespace aries {
 namespace rendering {

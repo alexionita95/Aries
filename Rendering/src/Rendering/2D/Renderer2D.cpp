@@ -1,10 +1,10 @@
 #include<glad/glad.h>
 #include<glm/gtc/matrix_transform.hpp>
 
-#include<Renderer2D.h>
-#include<Vertex.h>
-#include<Color.h>
-#include<TextureLoader.h>
+#include<Rendering/2D/Renderer2D.h>
+#include<Rendering/Vertex.h>
+#include<Rendering/Color.h>
+#include<Rendering/TextureLoader.h>
 #include<iostream>
 namespace aries {
 namespace rendering {

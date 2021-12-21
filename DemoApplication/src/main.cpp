@@ -1,9 +1,9 @@
-#include<Renderer2D.h>
+#include<Rendering/2D/Renderer2D.h>
 #include<Engine/App.h>
 #include<stdio.h>
 #include<memory>
-#include<OrthoCamera.h>
-#include<Color.h>
+#include<Rendering/OrthoCamera.h>
+#include<Rendering/Color.h>
 class MyApp : public aries::engine::App 
 {
 private:

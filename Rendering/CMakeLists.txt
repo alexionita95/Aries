@@ -1,6 +1,6 @@
 project(Rendering)
 
-file(GLOB SOURCES
+file(GLOB_RECURSE SOURCES
     "include/*.h"
     "src/*.cpp"
 )

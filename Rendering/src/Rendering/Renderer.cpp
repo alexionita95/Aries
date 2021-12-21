@@ -1,9 +1,9 @@
 #include<glad/glad.h>
 #include<glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Renderer.h>
-#include <Shader.h>
-#include <TextureLoader.h>
+#include <Rendering/Renderer.h>
+#include <Rendering/Shader.h>
+#include <Rendering/TextureLoader.h>
 #include<iostream>
 namespace aries {
 namespace rendering {

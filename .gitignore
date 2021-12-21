@@ -34,4 +34,6 @@
 .vs
 # Ignore Visual Studio 2019 CMake Settings
 CMakeSettings.json
+CMakeLists.txt.user
+*.bak
 

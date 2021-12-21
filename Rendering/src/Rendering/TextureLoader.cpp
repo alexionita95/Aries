@@ -1,6 +1,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-#include <TextureLoader.h>
+#include <Rendering/TextureLoader.h>
 #include <iostream>
 namespace aries {
 namespace rendering {
