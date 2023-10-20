@@ -2,7 +2,7 @@
 #include<glm/gtc/matrix_transform.hpp>
 
 #include<Rendering/2D/Renderer2D.h>
-#include<Rendering/Vertex.h>
+#include<Rendering/Vertex2D.h>
 #include<Rendering/Color.h>
 #include<Rendering/TextureLoader.h>
 #include<iostream>
@@ -29,9 +29,30 @@ void Renderer2D::BeginScene()
 {
     shader->Use();
     shader->setMat4("projection",camera->getProjection());
-    defaultTexture.Bind();
+    shader->setMat4("view", camera->getView());
     shader->setVec4("drawColor",glm::vec4(1));
     shader->setInt("drawTexture",0);
+    shader->setInt("hasTexture", 0);
+}
+
+void Renderer2D::Draw(const Drawable& drawable)
+{
+    glBindVertexArray(VAO);
+    shader->setMat4("model", drawable.getModel());
+    shader->setVec4("drawColor", drawable.getColor().get());
+    if (drawable.hasTexture())
+    {
+        shader->setInt("hasTexture", 1);
+        drawable.getTexture()->Bind();
+        shader->setVec4("region", drawable.getTextureRect());
+        shader->setVec2("texSize", drawable.getTexture()->getSize());
+    }
+    else
+    {
+        shader->setInt("hasTexture", 0);
+    }
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 void Renderer2D::DrawQuad(const float &x, const float &y, const float &width, const float height, const Color &color)
@@ -69,7 +90,7 @@ void Renderer2D::DrawRotatedQuad(const float &x, const float &y, const float &wi
 {
     glm::mat4 model = calculateModelMatrix(glm::vec3(x,y,0),degrees,glm::vec3(width,height,1));
     glBindVertexArray(VAO);
-    defaultTexture.Bind();
+    shader->setInt("hasTexture", 0);
     shader->setMat4("model",model);
     shader->setVec4("drawColor",color.get());
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -81,8 +102,11 @@ void Renderer2D::DrawQuad(const float &x, const float &y, const float &width, co
     glm::mat4 model = calculateModelMatrix(glm::vec3(x+width/2,y+height/2,0),0,glm::vec3(width,height,1));
     glBindVertexArray(VAO);
     texture.Bind();
+    shader->setInt("hasTexture", 1);
     shader->setMat4("model",model);
     shader->setVec4("drawColor",color.get());
+    shader->setVec4("region", glm::vec4(0, 0, 64, 64));
+    shader->setVec2("texSize", texture.getSize());
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
@@ -97,6 +121,7 @@ void Renderer2D::DrawRotatedQuad(const float &x, const float &y, const float &wi
     glm::mat4 model = calculateModelMatrix(glm::vec3(x,y,0),degrees,glm::vec3(width,height,1));
     glBindVertexArray(VAO);
     texture.Bind();
+    shader->setInt("hasTexture", 1);
     shader->setMat4("model",model);
     shader->setVec4("drawColor",color.get());
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -105,22 +130,33 @@ void Renderer2D::DrawRotatedQuad(const float &x, const float &y, const float &wi
 
 void Renderer2D::Clear(const Color &color)
 {
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    //glEnable( GL_DEPTH_TEST );
+   // glDepthFunc(GL_LESS);
     glEnable(GL_BLEND);
-    glDisable( GL_DEPTH_TEST );
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    //glBlendEquation(GL_FUNC_ADD);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     glm::vec4 colorValue = color.get();
     glClearColor(colorValue.r, colorValue.g, colorValue.b, colorValue.a);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClearDepth(1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 }
 
 void Renderer2D::InitQuad()
 {
-    Vertex2D vertices[] = {
+   /* Vertex2D vertices[] = {
          Vertex2D(0.5f,  0.5f, 0.0f,  1.0f, 1.0f), // top right
          Vertex2D(0.5f, -0.5f, 0.0f,  1.0f, 0.0f), // bottom right
         Vertex2D(-0.5f, -0.5f, 0.0f,  0.0f, 0.0f), // bottom left
         Vertex2D(-0.5f,  0.5f, 0.0f,  0.0f, 1.0f)  // top left
+    };
+    */
+        Vertex2D vertices[] = {
+        Vertex2D(1.0f, 1.0f, 0.0f,  1.0f, 1.0f), // top right
+        Vertex2D(1.0f, 0.0f, 0.0f,  1.0f, 0.0f), // bottom right
+        Vertex2D(0.0f, 0.0f, 0.0f,  0.0f, 0.0f), // bottom left
+        Vertex2D(0.0f, 1.0f, 0.0f,  0.0f, 1.0f)  // top left
     };
 
     unsigned int indices[] = {

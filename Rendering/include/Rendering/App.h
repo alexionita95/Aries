@@ -1,16 +1,17 @@
 #ifndef ENGINEAPP_H
 #define ENGINEAPP_H
-#include<Engine/Window.h>
+#include<Rendering/Window.h>
 #include<chrono>
 #include<memory>
 namespace aries {
-	namespace engine
+	namespace rendering
 	{
 		class App
 		{
 		public:
 			App(const uint32_t width, const uint32_t height, const char* title);
 			void run();
+			virtual void update(const float delta) = 0;
 			virtual void render(const float delta) = 0;
 			virtual ~App()
 			{

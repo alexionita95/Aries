@@ -1,15 +1,7 @@
-#ifndef VERTEX_H
-#define VERTEX_H
+#pragma once
 #include <glm/glm.hpp>
 namespace aries {
 namespace rendering {
-struct Vertex
-{
-    glm::vec3 Position;
-    glm::vec3 Color;
-    //glm::vec3 Normal;
-    glm::vec2 TexCoords;
-};
 struct Vertex2D
 {
     glm::vec3 Position;
@@ -23,4 +15,3 @@ struct Vertex2D
 };
 }
 }
-#endif // VERTEX_H

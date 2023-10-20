@@ -21,6 +21,10 @@ public:
     {
         glUniform4f(glGetUniformLocation(program, name.c_str()), vec.x,vec.y,vec.z,vec.w);
     }
+    void setVec2(const std::string& name, const glm::vec2& vec) const
+    {
+        glUniform2f(glGetUniformLocation(program, name.c_str()), vec.x, vec.y);
+    }
 
 
     int getId(){return program;}

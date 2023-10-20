@@ -1,6 +1,6 @@
-#include<Engine/App.h>
+#include<Rendering/App.h>
 namespace aries {
-	namespace engine
+	namespace rendering
 	{
 		App::App(const uint32_t width, const uint32_t height, const char* title)
 		{
@@ -16,6 +16,7 @@ namespace aries {
 				auto now = std::chrono::steady_clock::now();
 				float delta = std::chrono::duration<float>(now - lastTime).count();
 				lastTime = now;
+				update(delta);
 				render(delta);
 				window->swapBuffers();
 				window->poolEvents();

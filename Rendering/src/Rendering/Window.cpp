@@ -1,7 +1,7 @@
 #include<GLFW/glfw3.h>
-#include<Engine/Window.h>
+#include<Rendering/Window.h>
 namespace aries {
-	namespace engine
+	namespace rendering
 	{
 		Window::Window(const uint32_t width, const uint32_t height, const char* title):
 			window{nullptr}

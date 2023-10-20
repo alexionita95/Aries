@@ -9,6 +9,7 @@ class TextureLoader
 public:
     TextureLoader();
     Texture Load(const std::string& path, const bool& flip=true);
+    TextureHandle LoadHandle(const std::string& path, const bool& flip = true);
     static Texture CreateFlat(uint32_t width, uint32_t height, uint32_t color);
 
 };

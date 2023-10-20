@@ -8,6 +8,7 @@
 #include<Rendering/Shader.h>
 #include<Rendering/Color.h>
 #include<Rendering/Texture.h>
+#include<Rendering/2D/Drawable.h>
 
 namespace aries {
     namespace rendering {
@@ -17,6 +18,7 @@ public:
     Renderer2D(const std::shared_ptr<OrthoCamera>& camera_);
     void Init();
     void BeginScene();
+    void Draw(const Drawable& drawable);
     void DrawQuad(const float& x, const float& y, const float& width, const float height, const Color& color);
     void DrawLine(const float& x1, const float& y1, const float& x2, const float y2, const Color& color, const float& size=1.0f);
     void DrawCenterdQuad(const float& x, const float& y, const float& width, const float height, const Color& color);
